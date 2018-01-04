@@ -1,0 +1,51 @@
+COUNTRY FLAG QUIZ PLANNING:
+
+On launch:
+    game_started = false
+    question - "Would you like to start flag quiz?"
+
+On startGame intent: ("yes","start game","start","go","begin", etc.)
+    if !game_started
+        game_started = true
+        questions_correct = 0
+        Read CSV and create countries_hash hash table
+        make list of ints from 0-196 (length 197)
+        randomize list
+        Create list_pos = 0 to keep track of iteration through list
+        Read url from countries_hash for flag image
+        return card with flag image, question - "What Country is this flag from?"
+
+On dontStartGame intent: ("no","don't start","I don't want to play", etc.)
+    if !game_started
+        return statement "Ok, see you next time"
+
+On provideAnswer intent: (COUNTRY_NAME, "The answer is COUNTRY_NAME", "is it COUNTRY_NAME?", etc.)
+    if game_started
+        retrieve country name of current country no. from countries_hash
+        list_pos++
+        if list_pos >= number_questions
+            if country name == COUNTRY_NAME
+                questions_correct++
+                return statement "Yes that is correct, here is a fun fact about {{country name}}: {{fun fact}}. Out of number_questions you got questions_correct questions correct. Thanks for playing.", card with final score
+            else
+                return statement "Sorry, that is not correct, the correct answer was {{country name}}. Out of number_questions you got questions_correct questions correct. Thanks for playing.", card with final score
+
+        get next country flag image url
+        if country name == COUNTRY_NAME 
+            questions_correct++
+            return question - "Yes that is correct, here is a fun fact about {{country name}}: {{fun fact}}. Now, can you name what Country this flag belongs to?", card with flag image
+        else
+            return question - "Sorry, that is not correct, the correct answer was {{country name}}. Now, can you name what Country this flag belongs to?", card with flag image
+
+CSV FORMAT:
+    Country No., Flag image URL, Country Name, Fun Fact
+
+COUNTRIES_HASH FORMAT:
+    Key: Country No.
+    Value: [Flag URL, Country Name, Fun Fact]
+
+STRETCH GOALS:
+    Variable number of questions
+    Multiple fun facts
+    Let user know how to play (optional prompt)
+    echo show ver.
