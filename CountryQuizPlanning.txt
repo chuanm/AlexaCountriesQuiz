@@ -49,3 +49,10 @@ STRETCH GOALS:
     Multiple fun facts
     Let user know how to play (optional prompt)
     echo show ver.
+
+TODO:
+Interaction JSON
+ngrok/EchoSim.io testing
+-----
+Add real data csv
+Deploy to AWS Lambda
