@@ -44,13 +44,14 @@ def initGame():
             for country in country_reader:
                 countries_dict[int(country[0])] = [country[1],country[2],country[3]]
         #Randomize countries order
-        question_order = range(0,197)
+        question_order = range(0,3)
         shuffle(question_order)
         #Initialize list_pos
         list_pos = 0
         #Get the flag image of the first country in question_order and ask user with flag displayed on card
         what_country = render_template('which_country')
-        return question(what_country)
+        return question(what_country).standard_card(title="Which Country?",small_image_url=countries_dict[question_order[list_pos]][0],large_image_url=countries_dict[question_order[list_pos]][0])
+
 #If user indicates they do not want to start a new game, exit
 @ask.intent("DontStartGame")
 
@@ -75,9 +76,9 @@ def checkAnswer(country_name):
         if list_pos >= number_questions:
             if correct_name == country_name:
                 questions_correct += 1
-                return statement("Yes that is correct. Here is a fun fact about %s: %s. Out of %d questions you got %d correct. Thanks for playing" % (countries_dict[question_order[list_pos]][1],countries_dict[question_order[list_pos]][2],number_questions,questions_correct)).simple_card(title="Final Score",content="%d correct out of %d" % (questions_correct,number_questions))
+                return statement("Yes that is correct. Here is a fun fact about %s: %s. Out of %s questions you got %s correct. Thanks for playing" % (countries_dict[question_order[list_pos-1]][1],countries_dict[question_order[list_pos-1]][2],str(number_questions),str(questions_correct))).simple_card(title="Final Score",content="%d correct out of %d" % (questions_correct,number_questions))
             else:
-                return statement("Sorry, that is not correct. The correct answer was %s. Out of %d questions you got %d correct. Thanks for playing" % (countries_dict[question_order[list_pos]][1],number_questions,questions_correct)).simple_card(title="Final Score",content="%d correct out of %d" % (questions_correct,number_questions))
+                return statement("Sorry, that is not correct. The correct answer was %s. Out of %s questions you got %s correct. Thanks for playing" % (countries_dict[question_order[list_pos-1]][1],str(number_questions),str(questions_correct))).simple_card(title="Final Score",content="%d correct out of %d" % (questions_correct,number_questions))
         #Otherwise, get info about the next question to ask and ask it
         if correct_name == country_name:
             questions_correct += 1
