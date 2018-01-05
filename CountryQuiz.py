@@ -19,6 +19,7 @@ list_pos = 0 #Keeps track of how far down the question list we've gone
 @ask.launch
 
 def newGame():
+    global game_started
     game_started = False
     welcome_msg = render_template('welcome')
 
@@ -49,8 +50,7 @@ def initGame():
         list_pos = 0
         #Get the flag image of the first country in question_order and ask user with flag displayed on card
         what_country = render_template('which_country')
-        return question(what_country).standard_card(title="Which Country?",small_image_url=countries_dict[question_order[list_pos]][0],large_image_url=countries_dict[question_order[list_pos]][0])
-
+        return question(what_country)
 #If user indicates they do not want to start a new game, exit
 @ask.intent("DontStartGame")
 

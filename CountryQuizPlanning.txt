@@ -51,8 +51,8 @@ STRETCH GOALS:
     echo show ver.
 
 TODO:
-Interaction JSON
 ngrok/EchoSim.io testing
 -----
+Add all statements/questions to template yaml 
 Add real data csv
 Deploy to AWS Lambda

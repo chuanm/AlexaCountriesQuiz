@@ -8,7 +8,7 @@
         },
         {
             "intent": "ProvideAnswer",
-            "slots": [{"name": "country_name", "type": "string"}]
+            "slots": [{"name": "country_name", "type": "AMAZON.Country"}]
         }
     ]
 }
