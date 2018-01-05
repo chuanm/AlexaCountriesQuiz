@@ -1,0 +1,14 @@
+{
+    "intents": [
+        {
+            "intent": "StartGame" 
+        },
+        {
+            "intent": "DontStartGame"
+        },
+        {
+            "intent": "ProvideAnswer",
+            "slots": [{"name": "country_name", "type": "string"}]
+        }
+    ]
+}
