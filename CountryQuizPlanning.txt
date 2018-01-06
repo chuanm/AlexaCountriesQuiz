@@ -59,4 +59,3 @@ Deploy to AWS Lambda
 
 ISSUES:
 -Saying "no" in the middle of game crashes 
--Can't say "USA", or "America", have to say "United States of America"
