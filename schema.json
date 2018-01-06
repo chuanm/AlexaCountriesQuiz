@@ -7,6 +7,9 @@
             "intent": "DontStartGame"
         },
         {
+            "intent": "SayNo"
+        },
+        {
             "intent": "ProvideAnswer",
             "slots": [{"name": "country_name", "type": "LIST_OF_COUNTRIES"}]
         }
