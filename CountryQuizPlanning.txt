@@ -56,6 +56,3 @@ ngrok/EchoSim.io testing
 Add all statements/questions to template yaml 
 Add real data csv
 Deploy to AWS Lambda
-
-ISSUES:
--Saying "no" in the middle of game crashes 
