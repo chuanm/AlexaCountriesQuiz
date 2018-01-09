@@ -6,11 +6,11 @@ from flask_ask import Ask, statement, question, session
 app = Flask(__name__)
 ask = Ask(app, "/")
 
-COUNTRIES_CSV = 'sampleCSV.csv'  # Country CSV filename
+COUNTRIES_CSV = 'countries.csv'  # Country CSV filename
 
 game_started = False  # Keeps track of whether or not user is currently in a game
 questions_correct = 0  # Keeps track of number of questions answered correctly
-number_questions = 3  # How many questions to ask
+number_questions = 20  # How many questions to ask
 # Key = country No. , Value = [Flag URL, Country Name, Fun Fact]
 countries_dict = dict()
 question_order = []  # Contains ints which are country ids. Order to ask questions in
@@ -54,7 +54,7 @@ def initGame():
                 countries_dict[int(country[0])] = [
                     country[1], country[2].split(","), country[3]]
         # Randomize countries order
-        question_order = range(0, 3)
+        question_order = range(0, 20)
         shuffle(question_order)
         # Initialize list_pos
         list_pos = 0
