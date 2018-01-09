@@ -10,7 +10,7 @@ COUNTRIES_CSV = 'countries.csv'  # Country CSV filename
 
 game_started = False  # Keeps track of whether or not user is currently in a game
 questions_correct = 0  # Keeps track of number of questions answered correctly
-number_questions = 20  # How many questions to ask
+number_questions = 10  # How many questions to ask
 # Key = country No. , Value = [Flag URL, Country Name, Fun Fact]
 countries_dict = dict()
 question_order = []  # Contains ints which are country ids. Order to ask questions in
