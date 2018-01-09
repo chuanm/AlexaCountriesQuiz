@@ -10,7 +10,7 @@ COUNTRIES_CSV = 'countries.csv'  # Country CSV filename
 
 game_started = False  # Keeps track of whether or not user is currently in a game
 questions_correct = 0  # Keeps track of number of questions answered correctly
-number_questions = 20  # How many questions to ask
+number_questions = 10  # How many questions to ask
 # Key = country No. , Value = [Flag URL, Country Name, Fun Fact]
 countries_dict = dict()
 question_order = []  # Contains ints which are country ids. Order to ask questions in
@@ -127,6 +127,24 @@ def checkAnswer(country_name):
         else:
             return question("Sorry, that is not correct. The correct answer was %s. Now, can you guess what country this flag belongs to?" % (countries_dict[question_order[list_pos - 1]][1][0])).standard_card(title="Which Country?", small_image_url=countries_dict[question_order[list_pos]][0], large_image_url=countries_dict[question_order[list_pos]][0])
 
+@ask.intent('AMAZON.HelpIntent')
+
+def help():
+    global game_started
+    if not game_started:
+        return question("Indicate whether or not you'd like to start a new game by saying yes, or no. Once the game starts, look at the card displayed in the alexa app and try to guess which country the flag belongs to. If you don't know say I don't know.")
+    else:
+        return question("Look at the card displayed in the alexa app and try to guess which country the flag belongs to. If you don't know say I don't know.")
+
+
+@ask.intent('AMAZON.StopIntent')
+def stop():
+    return statement("Ok, see you next time")
+
+
+@ask.intent('AMAZON.CancelIntent')
+def cancel():
+    return statement("Ok, see you next time")
 
 if __name__ == '__main__':
     app.run(debug=True)
