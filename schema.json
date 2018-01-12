@@ -1,17 +1,31 @@
 {
     "intents": [
-        {
-            "intent": "StartGame" 
-        },
-        {
-            "intent": "DontStartGame"
-        },
-        {
-            "intent": "SayNo"
-        },
-        {
-            "intent": "ProvideAnswer",
-            "slots": [{"name": "country_name", "type": "LIST_OF_COUNTRIES"}]
-        }
+      {
+        "intent": "StartGame"
+      },
+      {
+        "intent": "DontStartGame"
+      },
+      {
+        "intent": "SayNo"
+      },
+      {
+        "slots": [
+          {
+            "name": "country_name",
+            "type": "LIST_OF_COUNTRIES"
+          }
+        ],
+        "intent": "ProvideAnswer"
+      },
+      {
+        "intent": "AMAZON.HelpIntent"
+      },
+      {
+        "intent": "AMAZON.StopIntent"
+      },
+      {
+        "intent": "AMAZON.CancelIntent"
+      }
     ]
-}
+  }

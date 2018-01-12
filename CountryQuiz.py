@@ -141,6 +141,10 @@ def help():
 def stop():
     return statement("Ok, see you next time")
 
+@ask.intent('AMAZON.CancelIntent')
+def cancel():
+    return statement("Ok, see you next time")
+
 
 @ask.intent('AMAZON.CancelIntent')
 def cancel():
