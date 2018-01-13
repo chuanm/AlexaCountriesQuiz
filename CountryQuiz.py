@@ -110,23 +110,25 @@ def checkAnswer(country_name):
     global question_order
     global number_questions
     if game_started:
-        country_name = country_name.lower()  # Sanitize input to lowercase
-        correct_name = countries_dict[question_order[list_pos]][1]
-        list_pos += 1
-        # If the allotted number of questions have been asked
-        if list_pos >= number_questions:
+        if country_name is not None:
+            country_name = country_name.lower()  # Sanitize input to lowercase
+            correct_name = countries_dict[question_order[list_pos]][1]
+            list_pos += 1
+            # If the allotted number of questions have been asked
+            if list_pos >= number_questions:
+                if country_name in correct_name:
+                    questions_correct += 1
+                    return statement("Yes that is correct. Here is a fun fact about %s: %s. Out of %s questions you got %s correct. Thanks for playing" % (countries_dict[question_order[list_pos - 1]][1][0], countries_dict[question_order[list_pos - 1]][2], str(number_questions), str(questions_correct))).simple_card(title="Final Score", content="%d correct out of %d" % (questions_correct, number_questions))
+                else:
+                    return statement("Sorry, that is not correct. The correct answer was %s. Out of %s questions you got %s correct. Thanks for playing" % (countries_dict[question_order[list_pos - 1]][1][0], str(number_questions), str(questions_correct))).simple_card(title="Final Score", content="%d correct out of %d" % (questions_correct, number_questions))
+            # Otherwise, get info about the next question to ask and ask it
             if country_name in correct_name:
                 questions_correct += 1
-                return statement("Yes that is correct. Here is a fun fact about %s: %s. Out of %s questions you got %s correct. Thanks for playing" % (countries_dict[question_order[list_pos - 1]][1][0], countries_dict[question_order[list_pos - 1]][2], str(number_questions), str(questions_correct))).simple_card(title="Final Score", content="%d correct out of %d" % (questions_correct, number_questions))
+                return question("Yes that is correct. Here is a fun fact about %s: %s. Now, can you guess what country this flag belongs to?" % (countries_dict[question_order[list_pos - 1]][1][0], countries_dict[question_order[list_pos - 1]][2])).standard_card(title="Which Country?", small_image_url=countries_dict[question_order[list_pos]][0], large_image_url=countries_dict[question_order[list_pos]][0])
             else:
-                return statement("Sorry, that is not correct. The correct answer was %s. Out of %s questions you got %s correct. Thanks for playing" % (countries_dict[question_order[list_pos - 1]][1][0], str(number_questions), str(questions_correct))).simple_card(title="Final Score", content="%d correct out of %d" % (questions_correct, number_questions))
-        # Otherwise, get info about the next question to ask and ask it
-        if country_name in correct_name:
-            questions_correct += 1
-            return question("Yes that is correct. Here is a fun fact about %s: %s. Now, can you guess what country this flag belongs to?" % (countries_dict[question_order[list_pos - 1]][1][0], countries_dict[question_order[list_pos - 1]][2])).standard_card(title="Which Country?", small_image_url=countries_dict[question_order[list_pos]][0], large_image_url=countries_dict[question_order[list_pos]][0])
+                return question("Sorry, that is not correct. The correct answer was %s. Now, can you guess what country this flag belongs to?" % (countries_dict[question_order[list_pos - 1]][1][0])).standard_card(title="Which Country?", small_image_url=countries_dict[question_order[list_pos]][0], large_image_url=countries_dict[question_order[list_pos]][0])
         else:
-            return question("Sorry, that is not correct. The correct answer was %s. Now, can you guess what country this flag belongs to?" % (countries_dict[question_order[list_pos - 1]][1][0])).standard_card(title="Which Country?", small_image_url=countries_dict[question_order[list_pos]][0], large_image_url=countries_dict[question_order[list_pos]][0])
-
+            return question("Please provide a proper answer.")
 @ask.intent('AMAZON.HelpIntent')
 
 def help():
